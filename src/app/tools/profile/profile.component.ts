@@ -5,40 +5,41 @@ import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  @Input() show:boolean | undefined;
+  @Input() show: boolean | undefined;
   firestore: FirebaseTSFirestore;
   auth: FirebaseTSAuth;
-  constructor() { 
+  constructor() {
     this.firestore = new FirebaseTSFirestore();
     this.auth = new FirebaseTSAuth();
   }
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
-  onContinueClick(nameInput: HTMLInputElement, descInput: HTMLTextAreaElement){
+  onContinueClick(nameInput: HTMLInputElement, descInput: HTMLTextAreaElement) {
     let name = nameInput.value;
     let desc = descInput.value;
-    let users:string = this.auth.getAuth().currentUser?.uid!;
+    const _currentUser = this.auth.getAuth().currentUser;
+    if (_currentUser && _currentUser.uid) {
+      const users: string = _currentUser.uid;
 
-    this.firestore.create({
-      path: ["Users", users],
-      data: {
-        publicName: name,
-        desc: desc
-      },
-      onComplete: (doc) => {
-        alert("Profile Created")
-        nameInput.value = "";
-        descInput.value = "";
-      },
-      onFail: (err) => {
-
-      }
-    });
+      this.firestore.create({
+        path: ['Users', users],
+        data: {
+          publicName: name,
+          desc: desc,
+        },
+        onComplete: (doc) => {
+          alert('Profile Created');
+          nameInput.value = '';
+          descInput.value = '';
+        },
+        onFail: (err) => {},
+      });
+    } else {
+      console.error('No User found!');
+    }
   }
 }

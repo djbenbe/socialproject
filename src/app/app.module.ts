@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,11 @@ import { AuthenticatorComponent } from './tools/authenticator/authenticator.comp
 import { MaterialModule } from './material/material.module';
 import { EmailVerificationComponent } from './pages/email-verification/email-verification.component';
 import { ProfileComponent } from './tools/profile/profile.component';
+import { PostFeedComponent } from './pages/post-feed/post-feed.component';
+import { CreatePostComponent } from './tools/create-post/create-post.component';
+import { PostComponent } from './tools/post/post.component';
+import { ReplyComponent } from './tools/reply/reply.component';
+
 
 @NgModule({
   declarations: [
@@ -18,13 +24,18 @@ import { ProfileComponent } from './tools/profile/profile.component';
     HomeComponent,
     AuthenticatorComponent,
     EmailVerificationComponent,
-    ProfileComponent
+    ProfileComponent,
+    PostFeedComponent,
+    CreatePostComponent,
+    PostComponent,
+    ReplyComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

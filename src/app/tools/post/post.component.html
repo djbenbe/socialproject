@@ -1,0 +1,15 @@
+<mat-card id="post-item">
+    <mat-card-header>
+        <mat-card-title>{{creatorName}}</mat-card-title>
+        <mat-card-subtitle>{{creatorDisc}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{postData?.imageUrl}}">
+    <mat-card-content>
+       {{postData?.comment}}
+    </mat-card-content>
+    <mat-card-actions>
+        <mat-icon (click)="onReplyClick()" id="action-bttn" color="warn">chat_bubble_outline</mat-icon>
+        <mat-icon id="action-bttn" color="warn">favorite_border</mat-icon>
+        <mat-icon id="action-bttn" color="warn">save</mat-icon>
+    </mat-card-actions>
+</mat-card>

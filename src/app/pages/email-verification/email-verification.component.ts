@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-email-verification',
   templateUrl: './email-verification.component.html',
@@ -9,17 +8,21 @@ import { Router } from '@angular/router';
 })
 export class EmailVerificationComponent implements OnInit {
   auth = new FirebaseTSAuth();
-  constructor(private router: Router) { }
+  constructor( private router: Router) { }
    
-
+  
   ngOnInit(): void {
-    this.auth.getAuth().currentUser 
-      if(this.auth.isSignedIn() && !this.auth.getAuth().currentUser?.emailVerified) {
-
+    const _currentUser = this.auth.getAuth().currentUser;
+    if (_currentUser && _currentUser.uid) {
+      const users = _currentUser.emailVerified;
+      if(this.auth.isSignedIn() && !users) {
         this.auth.sendVerificationEmail();
       } else {
         this.router.navigate([""]);
       }
+    } else {
+      console.error('No User found!');
+    }
   }
   onResendClick(){
     this.auth.sendVerificationEmail();

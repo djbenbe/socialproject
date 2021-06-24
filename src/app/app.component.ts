@@ -6,7 +6,6 @@ import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFi
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 
 import { AuthenticatorComponent } from './tools/authenticator/authenticator.component';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -16,16 +15,12 @@ import { FormControl } from '@angular/forms';
 export class AppComponent implements OnInit {
   title = 'socialproject';
   @HostBinding('class') className = '';
-  toggleControl = new FormControl(false);
   auth = new FirebaseTSAuth();
   firestore = new FirebaseTSFirestore();
   userHasProfile = true;
   private static userDocument: UserDocument;
 
   ngOnInit(): void {
-    this.toggleControl.valueChanges.subscribe(val => {
-      this.className = val ? 'darkMode' : '';
-    });
   }
   constructor(private loginSheet2: MatBottomSheet, private router: Router) {
     this.auth.listenToSignInStateChanges(
@@ -33,10 +28,9 @@ export class AppComponent implements OnInit {
         this.auth.checkSignInState(
           {
             whenSignedIn: user => {
-              this.router.navigate([""]);
             },
             whenSignedOut: user => {
-              this.router.navigate([""]);
+              AppComponent.userDocument = null;
             },
             whenSignedInAndEmailNotVerified: user => {
               this.router.navigate(["emailVerification"]);
@@ -53,7 +47,9 @@ export class AppComponent implements OnInit {
       }
     );
   }
-
+  public static getUserDocement(){
+    return AppComponent.userDocument;
+  }
   getUserProfile(){
     const _currentUser = this.auth.getAuth().currentUser;
     if (_currentUser && _currentUser.uid) {

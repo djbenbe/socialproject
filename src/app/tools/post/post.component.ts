@@ -9,7 +9,8 @@ import { ReplyComponent } from '../reply/reply.component';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-  @Input() postData: PostData | undefined;
+  @Input()
+  postData: PostData | undefined;
   creatorName: string | undefined;
   creatorDisc: string | undefined;
   firestore = new FirebaseTSFirestore();

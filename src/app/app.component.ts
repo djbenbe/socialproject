@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   auth = new FirebaseTSAuth();
   firestore = new FirebaseTSFirestore();
   userHasProfile = true;
-  private static userDocument: UserDocument;
+  private static userDocument: UserDocument | null;
 
   ngOnInit(): void {
   }

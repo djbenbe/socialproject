@@ -2,6 +2,8 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '~@angular/material' as mat;
+@import "~@angular/material/theming";
+
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -12,8 +14,8 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$socialproject-primary: mat.define-palette(mat.$indigo-palette);
-$socialproject-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$socialproject-primary: mat.define-palette(mat.$red-palette);
+$socialproject-accent: mat.define-palette(mat.$orange-palette, 800, 700, 500);
 
 // The warn palette is optional (defaults to red).
 $socialproject-warn: mat.define-palette(mat.$red-palette);
@@ -35,9 +37,9 @@ $socialproject-dark-theme: mat.define-dark-theme((
   )
 ));
 .darkMode {
+  @include angular-material-color($socialproject-dark-theme);
 }
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($socialproject-theme);
-

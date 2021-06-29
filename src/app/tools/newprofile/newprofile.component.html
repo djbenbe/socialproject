@@ -1,0 +1,27 @@
+<div id="profile" [ngClass]="{'active': show, 'idle': !show}">
+    <div id="profile-content">
+        <input #nameInput placeholder="Name">
+        <textarea #descInput placeholder="description"></textarea>
+        <div class="datepicker">
+            <input #dateInput matInput [matDatepicker]="picker" placeholder="geboortedatum">
+            <mat-datepicker-toggle matSuffix [for]="picker" >
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </div>
+        <div class="upload-continue">
+            <div *ngIf="selectedImageFile" id="profile-preview">
+                <img id="profile-preview-img"/>
+            </div>
+            
+            <button mat-button color="warn">
+                <label for="photo-upload">
+                    <input #photoSelector (change)="onPhotoSelected(photoSelector)" id="photo-upload" type="file" accept="image/*">
+                    <mat-icon>insert_photo</mat-icon>
+                </label>
+            </button> 
+            <button (click)="onContinueClick(nameInput, descInput, dateInput)" mat-flat-button color="warn">Continue</button>
+        </div>
+    </div>
+    
+</div>

@@ -16,6 +16,15 @@
 .spacer {
   flex: 1 1 auto;
 }
-html, body {
-  background-color: #f6f7f9;
+.profile-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 0.6em;
 }
+.nav-bar-items mat-icon svg {
+  fill: rgba(255, 255, 255, 1);
+  ;
+}
+button mat-icon {color: #fff}

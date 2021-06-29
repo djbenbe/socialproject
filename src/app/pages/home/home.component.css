@@ -31,6 +31,10 @@
   align-items: center;
 
 }
+div#landing-right {
+  margin: auto;
+  width: 60%;
+}
 #landing-left-content {
   text-align: right;
   padding: 1em 1em 1em 3em;

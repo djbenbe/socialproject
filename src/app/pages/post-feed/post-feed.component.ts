@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreatePostComponent } from 'src/app/tools/create-post/create-post.component';
 import { FirebaseTSFirestore, Limit, OrderBy, Where } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
+import { PostData } from 'src/app/interface/post-data'
 
 @Component({
   selector: 'app-post-feed',
@@ -20,7 +21,7 @@ export class PostFeedComponent implements OnInit {
   onCreatePostClick() {
     this.dialog.open(CreatePostComponent);
   }
-
+  
   getPosts() {
     this.firestore.getCollection({
       path: ["Post"],
@@ -43,11 +44,4 @@ export class PostFeedComponent implements OnInit {
     });
 
   }
-}
-
-export interface PostData{
-  comment: string;
-  creatorId: string;
-  imageUrl?: string;
-  postId: string;
 }

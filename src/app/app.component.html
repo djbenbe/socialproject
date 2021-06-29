@@ -1,14 +1,22 @@
-<mat-toolbar id="nav-bar">
-    <div id="nav-bar-left">
-      <div style="font-size: npm 1.5em"class="nav-bar-items">#DJBEN</div>
-    </div>
-    <div class="spacer"></div>
-    <div id="nav-bar-right">
-      <a mat-button *ngIf="loggedIn() && userHasProfile" class="nav-bar-items" >{{userDocument?.publicName}}</a>
-      <a mat-raised-button color="warn" *ngIf="!loggedIn()" (click)="onLoginClick()"  class="nav-bar-items">Login</a>
-      <a mat-raised-button color="warn" *ngIf="loggedIn()" (click)="onLogoutClick()"  class="nav-bar-items">Log out</a>
-    </div>
-</mat-toolbar>
-<router-outlet></router-outlet>
+<div class="" [ngClass]="{'darkMode': isDarkTheme}">
+  <div class="mat-app-background">
+  <mat-toolbar id="nav-bar">
+      <div id="nav-bar-left">
+        <div style="font-size: npm 1.5em"class="nav-bar-items">#DJBEN</div>
+      </div>
+      <div class="spacer"></div>
+      <div id="nav-bar-right">
+        <mat-slide-toggle [(ngModel)]="isDarkTheme" class="mr-8" (change)="themeSelect()">
+        </mat-slide-toggle>
+        <a mat-button *ngIf="loggedIn() && userHasProfile && verificationIn()" class="nav-bar-items" (click)="onProfileClick()"><img src="{{profileImage}}" class="profile-img">{{getUsername()}}</a>
+        <a mat-button *ngIf="loggedIn() && userHasProfile && verificationIn()" class="nav-bar-items" routerLink="/postFeed"><mat-icon>home</mat-icon></a>
+        <a mat-button *ngIf="!loggedIn()"  class="nav-bar-items">Registeren</a>
+        <a mat-raised-button color="warn" *ngIf="!loggedIn()" (click)="onLoginClick()"  class="nav-bar-items">Login</a>
+        <a mat-raised-button color="warn" *ngIf="loggedIn()" (click)="onLogoutClick()"  class="nav-bar-items">Log out</a>
+      </div>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
 
-<app-profile [show]="loggedIn() && !userHasProfile"></app-profile>
+  <app-newprofile [show]="loggedIn() && !userHasProfile && verificationIn()"></app-newprofile>
+  </div>
+</div>

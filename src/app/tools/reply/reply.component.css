@@ -23,3 +23,23 @@
 input {
     direction: ltr;
 }
+.comment-container {
+    display: flex;
+}
+.comment-name {
+    font-size: .9em;
+
+}
+.comment{
+    border-radius: 1em;
+    background: gainsboro;
+    padding: 1em;
+}
+.creator-comment-container{
+    justify-content: flex-end;
+    text-align: end;
+}
+.creator-comment{
+    background-color: darkgoldenrod;
+    color: #fff;
+}

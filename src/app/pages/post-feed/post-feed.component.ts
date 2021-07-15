@@ -4,6 +4,7 @@ import { CreatePostComponent } from 'src/app/tools/create-post/create-post.compo
 import { FirebaseTSFirestore, Limit, OrderBy, Where } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 import { PostData } from 'src/app/interface/post-data'
+import { Timestamp } from '@firebase/firestore-types';
 
 @Component({
   selector: 'app-post-feed',

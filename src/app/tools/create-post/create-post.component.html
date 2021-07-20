@@ -9,12 +9,10 @@
         <img id="post-preview-img"/>
     </div>
     <mat-card-actions align="end">
-       <button mat-button color="warn">
-           <label for="photo-upload">
-               <input #photoSelector (change)="onPhotoSelected(photoSelector)" id="photo-upload" type="file" accept="image/*">
-               <mat-icon>insert_photo</mat-icon>
-           </label>
-       </button> 
-       <button (click)="onPostClick(commentIput)" mat-flat-button color="warn">Post</button> 
+       <button mat-button (click)="photoSelector.click()" color="warn">
+          <mat-icon>insert_photo</mat-icon>
+       </button>
+       <button (click)="onPostClick(commentIput)" mat-flat-button color="warn">Post</button>
     </mat-card-actions>
+    <input #photoSelector (change)="onPhotoSelected(photoSelector)" id="photo-upload" type="file" accept="image/*">
 </mat-card>
